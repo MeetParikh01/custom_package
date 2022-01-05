@@ -2,7 +2,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import (
     declarative_base,
     scoped_session,
-    sessionmaker
+    sessionmaker,
+    Session
 )
 from sqlalchemy_utils import database_exists, create_database
 
@@ -49,11 +50,7 @@ class PostgresHandler:
         engine = create_engine(
             self.url, pool_size=self.pool_size, pool_pre_ping=True, pool_recycle=300, echo=False,
             isolation_level="READ UNCOMMITTED")
-        db_session = scoped_session(
-            sessionmaker(autocommit=False, autoflush=False, bind=engine)
-        )
         base = declarative_base(bind=engine)
-        base.query = db_session.query_property()
         return base, engine
 
     def initialize_db(self):
