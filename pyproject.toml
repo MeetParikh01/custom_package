@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "custom_package"
-version = "0.1.1"
+version = "0.1.2"
 description = "Demo Custom Package"
 authors = ["MeetParikh01 <meet.parikh@tntra.io>"]
 
